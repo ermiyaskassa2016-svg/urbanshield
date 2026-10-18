@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UrbanShield Janitorial</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Commercial cleaning for GTA offices, medical and dental clinics, retail stores and industrial facilities. Every visit verified, hygiene tested with ATP every month, 2-hour response, 30-day exit. Free 20-minute Hygiene Snapshot.">
+<meta property="og:title" content="UrbanShield Janitorial | Clean you can measure">
+<meta property="og:description" content="GTA commercial cleaning with proof: GPS-verified visits, monthly ATP hygiene testing, 24-hour re-clean guarantee and no lock-in contracts.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 8 12v18c0 15 10 26 24 30 14-4 24-15 24-30V12L32 4z' fill='%230B2545'/%3E%3Cpath d='M22 22v12a10 10 0 0 0 20 0V22' fill='none' stroke='%2314B8A6' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "UrbanShield Janitorial",
+  "legalName": "Persea Vitalis Inc.",
+  "description": "Commercial cleaning and janitorial services for offices, medical and dental clinics, retail stores and industrial facilities in the Greater Toronto Area.",
+  "telephone": "+1-647-705-6847",
+  "email": "ermiyas@perseavitalis.ca",
+  "address": {"@type": "PostalAddress", "addressLocality": "North York", "addressRegion": "ON", "addressCountry": "CA"},
+  "areaServed": ["Toronto", "North York", "Scarborough", "East York", "Markham", "Richmond Hill", "Vaughan", "Mississauga", "Brampton"],
+  "parentOrganization": {"@type": "Organization", "name": "Persea Vitalis Inc."}
+}
+</script>
+<style>
+/* Layout concept: a lab-report page for a cleaning company. Navy ink on cool clinical paper, one teal "shield" accent,
+   monospace readouts wherever we show measurements (RLU, scores, times). The hero is a live hygiene meter. */
+:root {
+  --paper: #F3F7F8;
+  --surface: #FFFFFF;
+  --ink: #0B2545;
+  --muted: #4A5D72;
+  --line: #D5E0E6;
+  --teal: #0E9F95;
+  --teal-ink: #08756E;
+  --teal-wash: #DDF3F0;
+  --navy: #0B2545;
+  --on-navy: #EAF4F6;
+  --on-navy-muted: #A9C1CC;
+  --pass: #1F9D55;
+  --warn: #C98A06;
+  --fail: #C8382E;
+  --pass-wash: #E2F4E9;
+  --fail-wash: #FBE6E4;
+  --focus: #F2A900;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "Public Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --radius: 10px;
+  --maxw: 1180px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #08172A; --surface: #0E2238; --ink: #E7F0F4; --muted: #A3B6C6; --line: #23405C;
+    --teal: #2CC9BC; --teal-ink: #5EE0D4; --teal-wash: #0F3B43;
+    --navy: #051121; --on-navy: #E7F0F4; --on-navy-muted: #93AFC0;
+    --pass: #45C97C; --warn: #E5B23A; --fail: #F06A5E; --pass-wash: #12382A; --fail-wash: #3E1C1C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #08172A; --surface: #0E2238; --ink: #E7F0F4; --muted: #A3B6C6; --line: #23405C;
+  --teal: #2CC9BC; --teal-ink: #5EE0D4; --teal-wash: #0F3B43;
+  --navy: #051121; --on-navy: #E7F0F4; --on-navy-muted: #93AFC0;
+  --pass: #45C97C; --warn: #E5B23A; --fail: #F06A5E; --pass-wash: #12382A; --fail-wash: #3E1C1C;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--navy); }
+img, svg { max-width: 100%; }
+a { color: var(--teal-ink); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); font-weight: 850; font-stretch: 112%; }
+h3 { font-size: 1.25rem; font-weight: 750; font-stretch: 105%; line-height: 1.2; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-ink); font-weight: 600; }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 62ch; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+section { padding-block: clamp(64px, 9vw, 112px); }
+.sec-head { display: grid; gap: 14px; margin-bottom: 44px; max-width: 760px; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 750; font-stretch: 108%; font-size: 1rem; padding: 14px 22px; border-radius: 999px; text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.btn-primary { background: var(--teal); color: #04201E; }
+.btn-primary:hover { transform: translateY(-1px); background: var(--teal-ink); color: #fff; }
+.btn-ghost { border-color: currentColor; color: inherit; background: transparent; }
+.btn-ghost:hover { background: var(--teal-wash); color: var(--ink); }
+
+/* header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--navy); color: var(--on-navy); }
+.top .wrap { display: flex; align-items: center; gap: 18px; min-height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--on-navy); text-decoration: none; margin-right: auto; }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.brand b { font-family: var(--display); font-weight: 900; font-stretch: 120%; font-size: 1.12rem; letter-spacing: .04em; }
+.brand span { font-family: var(--display); font-weight: 500; font-stretch: 120%; font-size: 1.12rem; letter-spacing: .04em; color: var(--teal); }
+.nav { display: flex; gap: 22px; }
+.nav a { color: var(--on-navy-muted); text-decoration: none; font-size: .95rem; font-weight: 500; }
+.nav a:hover { color: var(--on-navy); }
+.top .btn { padding: 10px 16px; font-size: .92rem; }
+.call { font-family: var(--mono); font-size: .9rem; color: var(--on-navy); text-decoration: none; white-space: nowrap; }
+@media (max-width: 980px) { .nav { display: none; } }
+@media (max-width: 560px) { .call { display: none; } .top .btn { display: none; } .brand b, .brand span { font-size: 1rem; } }
+
+/* hero */
+.hero { background: var(--navy); color: var(--on-navy); padding-block: clamp(48px, 7vw, 88px) clamp(56px, 8vw, 96px); position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: auto -10% -40% auto; width: 60vw; height: 60vw; max-width: 760px; max-height: 760px; border-radius: 50%; background: radial-gradient(closest-side, rgba(20,184,166,.22), transparent); pointer-events: none; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 64px); align-items: center; position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(2.9rem, 7.4vw, 6rem); font-weight: 900; font-stretch: 118%; line-height: .92; letter-spacing: -0.02em; }
+.hero h1 em { font-style: normal; color: var(--teal); display: block; }
+.hero .lede { color: var(--on-navy-muted); margin-top: 22px; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.hero .actions .btn-ghost { color: var(--on-navy); }
+.hero .actions .btn-ghost:hover { color: var(--navy); background: var(--on-navy); }
+.hero-facts { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 30px; font-family: var(--mono); font-size: .82rem; color: var(--on-navy-muted); }
+.hero-facts span::before { content: "\2713"; color: var(--teal); margin-right: 8px; font-weight: 700; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+/* meter card */
+.meter { background: var(--surface); color: var(--ink); border-radius: 16px; padding: 22px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); border: 1px solid var(--line); min-width: 0; }
+.meter-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.meter-head h3 { font-size: 1.05rem; }
+.toggle { display: inline-flex; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.toggle button { font: 600 .82rem var(--mono); border: 0; background: transparent; color: var(--muted); padding: 7px 12px; border-radius: 999px; cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.readings { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+.reading { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; }
+.reading .pt { font-size: .9rem; }
+.reading .val { font-family: var(--mono); font-size: .88rem; font-variant-numeric: tabular-nums; text-align: right; }
+.reading .bar { grid-column: 1 / -1; height: 10px; background: var(--paper); border-radius: 99px; position: relative; overflow: hidden; border: 1px solid var(--line); }
+.reading .bar i { position: absolute; inset: 0 auto 0 0; width: 50%; border-radius: 99px; background: var(--fail); transition: width .8s cubic-bezier(.2,.8,.2,1), background .4s; }
+.reading .bar::after { content: ""; position: absolute; top: -3px; bottom: -3px; left: calc(var(--limit) * 1%); width: 2px; background: var(--ink); opacity: .55; }
+.tag { font-family: var(--mono); font-size: .72rem; font-weight: 600; padding: 2px 8px; border-radius: 99px; margin-left: 8px; }
+.tag.pass { background: var(--pass-wash); color: var(--pass); }
+.tag.fail { background: var(--fail-wash); color: var(--fail); }
+.meter-foot { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.score { font-family: var(--display); font-weight: 900; font-stretch: 115%; font-size: 1.6rem; color: var(--ink); }
+.meter-note { font-size: .76rem; color: var(--muted); margin-top: 10px; }
+
+/* promise strip */
+.strip { background: var(--teal); color: #04201E; padding-block: 18px; }
+.strip ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 28px; font-family: var(--display); font-weight: 750; font-stretch: 108%; font-size: 1rem; }
+.strip li span { font-family: var(--mono); font-weight: 600; margin-right: 8px; }
+
+/* standard grid */
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.pillar { padding: 28px 26px 32px 0; border-bottom: 1px solid var(--line); display: grid; gap: 10px; align-content: start; }
+.pillar:not(:nth-child(3n+1)) { padding-left: 26px; border-left: 1px solid var(--line); }
+.pillar .k { font-family: var(--mono); font-size: .8rem; color: var(--teal-ink); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.pillar p { color: var(--muted); font-size: .98rem; }
+@media (max-width: 900px) { .pillars { grid-template-columns: 1fr 1fr; } .pillar, .pillar:not(:nth-child(3n+1)) { padding: 24px 18px 26px; border-left: 0; } .pillar:nth-child(even) { border-left: 1px solid var(--line); } }
+@media (max-width: 600px) { .pillars { grid-template-columns: 1fr; } .pillar:nth-child(even) { border-left: 0; } .pillar, .pillar:not(:nth-child(3n+1)) { padding-inline: 0; } }
+
+/* comparison */
+.compare-wrap { overflow-x: auto; margin-top: 56px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+table.compare { width: 100%; border-collapse: collapse; min-width: 620px; font-size: .96rem; }
+.compare th, .compare td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.compare thead th { font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.compare thead th.us { color: var(--teal-ink); }
+.compare td.us { background: var(--teal-wash); font-weight: 600; }
+.compare tr:last-child td { border-bottom: 0; }
+.compare td:first-child { font-weight: 600; width: 24%; }
+.x { color: var(--muted); }
+
+/* night timeline */
+.night { background: var(--surface); border-block: 1px solid var(--line); }
+.night-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+@media (max-width: 900px) { .night-grid { grid-template-columns: 1fr; } }
+ol.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.timeline li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.timeline time { font-family: var(--mono); font-weight: 600; color: var(--teal-ink); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.timeline b { display: block; font-family: var(--display); font-stretch: 105%; font-weight: 750; }
+.timeline span { color: var(--muted); font-size: .95rem; }
+
+.report { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 24px; font-size: .92rem; min-width: 0; }
+.report-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-bottom: 16px; }
+.report-head b { font-family: var(--display); font-stretch: 110%; font-size: 1.1rem; }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.kpi .n { font-family: var(--display); font-weight: 900; font-stretch: 115%; font-size: 1.7rem; line-height: 1; }
+.kpi .l { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+.report table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: .8rem; font-variant-numeric: tabular-nums; }
+.report td, .report th { padding: 7px 4px; border-bottom: 1px solid var(--line); text-align: left; }
+.report th { color: var(--muted); font-weight: 500; }
+.ok { color: var(--pass); font-weight: 600; }
+.sample { display: inline-block; font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 2px 8px; border-radius: 4px; }
+@media (max-width: 480px) { .kpis { grid-template-columns: 1fr 1fr; } }
+
+/* industries */
+.industries { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.ind { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: grid; gap: 12px; align-content: start; }
+.ind.feature { grid-row: span 2; background: var(--navy); color: var(--on-navy); border-color: var(--navy); }
+.ind.feature p, .ind.feature li { color: var(--on-navy-muted); }
+.ind.feature .eyebrow { color: var(--teal); }
+.ind ul { margin: 4px 0 0; padding-left: 18px; color: var(--muted); font-size: .95rem; display: grid; gap: 4px; }
+.ind p { color: var(--muted); font-size: .97rem; }
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.sw { font-family: var(--mono); font-size: .74rem; padding: 4px 10px; border-radius: 99px; color: #fff; }
+@media (max-width: 760px) { .industries { grid-template-columns: 1fr; } .ind.feature { grid-row: auto; } }
+
+/* services */
+.svc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.svc h3 { margin-bottom: 12px; }
+.svc ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.svc li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.svc li span:last-child { font-family: var(--mono); font-size: .85rem; color: var(--muted); white-space: nowrap; }
+@media (max-width: 760px) { .svc { grid-template-columns: 1fr; } .svc li { flex-wrap: wrap; } }
+.exclude { margin-top: 28px; font-size: .9rem; color: var(--muted); max-width: 80ch; }
+
+/* estimator */
+.pricing { background: var(--teal-wash); }
+.est { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--surface); border-radius: 16px; border: 1px solid var(--line); overflow: hidden; }
+.est form { padding: 28px; display: grid; gap: 18px; }
+.est .out { background: var(--navy); color: var(--on-navy); padding: 28px; display: grid; gap: 16px; align-content: start; }
+.field { display: grid; gap: 6px; }
+.field label, .field .lab { font-weight: 600; font-size: .92rem; }
+.field small { color: var(--muted); font-size: .8rem; }
+select, input, textarea { font: inherit; font-size: 1rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 11px 12px; width: 100%; }
+textarea { min-height: 110px; resize: vertical; }
+input[type="range"] { padding: 0; accent-color: var(--teal); background: transparent; border: 0; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg label { cursor: pointer; }
+.seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.seg span { display: inline-block; padding: 8px 12px; border: 1px solid var(--line); border-radius: 99px; font-size: .88rem; background: var(--paper); }
+.seg input:checked + span { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.seg input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+.price { font-family: var(--display); font-weight: 900; font-stretch: 115%; font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.out .muted { color: var(--on-navy-muted); font-size: .9rem; }
+.out dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0; font-family: var(--mono); font-size: .85rem; }
+.out dt { color: var(--on-navy-muted); }
+.out dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.out .btn { justify-self: start; }
+.from { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+.from div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.from b { display: block; font-family: var(--display); font-stretch: 110%; }
+.from span { font-family: var(--mono); font-size: .9rem; color: var(--teal-ink); }
+@media (max-width: 860px) { .est { grid-template-columns: 1fr; } .from { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } }
+
+/* trust */
+.trust-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 5vw, 72px); }
+.docs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--ink); }
+.docs li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.docs li::before { content: "\25A0"; color: var(--teal); font-size: .9rem; padding-top: 3px; }
+.docs b { display: block; }
+.docs span { color: var(--muted); font-size: .93rem; }
+.founder { background: var(--navy); color: var(--on-navy); border-radius: 16px; padding: 30px; display: grid; gap: 16px; align-content: start; }
+.founder blockquote { margin: 0; font-family: var(--display); font-stretch: 104%; font-weight: 600; font-size: 1.28rem; line-height: 1.35; }
+.founder p { color: var(--on-navy-muted); font-size: .95rem; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--teal); color: #04201E; display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 1.3rem; }
+.sig { display: flex; gap: 14px; align-items: center; }
+@media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; } }
+
+/* areas */
+.areas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.areas span { border: 1px solid var(--line); background: var(--surface); padding: 7px 14px; border-radius: 99px; font-size: .92rem; }
+.areas span.soon { border-style: dashed; color: var(--muted); }
+
+/* snapshot / contact */
+.book { background: var(--navy); color: var(--on-navy); }
+.book-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.book .lede { color: var(--on-navy-muted); }
+.book h2 em { font-style: normal; color: var(--teal); }
+.steps { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; color: var(--on-navy-muted); }
+.steps li::before { content: counter(s); font-family: var(--mono); font-weight: 600; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--teal); color: var(--teal); display: grid; place-items: center; font-size: .85rem; }
+.steps b { color: var(--on-navy); }
+.contact-lines { margin-top: 30px; display: grid; gap: 10px; font-family: var(--mono); font-size: .95rem; }
+.contact-lines div { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.contact-lines a { color: var(--on-navy); }
+.copy { font: 600 .74rem var(--mono); border: 1px solid var(--on-navy-muted); color: var(--on-navy-muted); background: transparent; border-radius: 6px; padding: 3px 8px; cursor: pointer; }
+.lead { background: var(--surface); color: var(--ink); border-radius: 16px; padding: 28px; display: grid; gap: 16px; }
+.check { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; font-size: .86rem; color: var(--muted); }
+.check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--teal); }
+.form-msg { border-radius: 10px; padding: 14px 16px; font-size: .95rem; }
+.form-msg.ok { background: var(--pass-wash); color: var(--ink); }
+.form-msg.err { background: var(--fail-wash); color: var(--ink); }
+.hp { position: absolute; left: -9999px; }
+@media (max-width: 860px) { .book-grid { grid-template-columns: 1fr; } }
+
+/* faq */
+.faq { display: grid; gap: 0; border-top: 2px solid var(--ink); max-width: 880px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 4px 0; }
+.faq summary { cursor: pointer; list-style: none; padding: 16px 40px 16px 0; font-family: var(--display); font-stretch: 105%; font-weight: 700; font-size: 1.1rem; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 6px; top: 12px; font-family: var(--mono); font-size: 1.4rem; color: var(--teal-ink); }
+.faq details[open] summary::after { content: "\2013"; }
+.faq details p { padding: 0 0 18px; color: var(--muted); max-width: 70ch; }
+
+/* footer */
+footer { background: var(--navy); color: var(--on-navy-muted); padding-block: 48px calc(48px + env(safe-area-inset-bottom, 0px)); font-size: .9rem; border-top: 1px solid rgba(255,255,255,.08); }
+.foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
+footer h4 { font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--on-navy); margin: 0 0 12px; font-weight: 600; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+footer a { color: var(--on-navy-muted); }
+.legal { margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .82rem; }
+@media (max-width: 760px) { .foot { grid-template-columns: 1fr; } }
+
+.mobile-cta { display: none; }
+@media (max-width: 560px) {
+  .mobile-cta { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--navy); padding: 10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); border-top: 1px solid rgba(255,255,255,.12); }
+  .mobile-cta a { text-align: center; padding: 11px 6px; border-radius: 10px; font-family: var(--display); font-weight: 750; font-size: .9rem; text-decoration: none; color: var(--on-navy); border: 1px solid rgba(255,255,255,.25); }
+  .mobile-cta a.go { background: var(--teal); color: #04201E; border-color: var(--teal); }
+  footer { padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reading .bar i { transition: none; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="UrbanShield Janitorial home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4 8 12v18c0 15 10 26 24 30 14-4 24-15 24-30V12L32 4z" fill="#14B8A6"/><path d="M32 9 13 15.5V30c0 12 8 21 19 24.6C43 51 51 42 51 30V15.5L32 9z" fill="#0B2545"/><path d="M23 22v11a9 9 0 0 0 18 0V22" fill="none" stroke="#14B8A6" stroke-width="5.5" stroke-linecap="round"/></svg>
+      <b>URBANSHIELD</b><span>JANITORIAL</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#standard">The Standard</a>
+      <a href="#industries">Industries</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#trust">Compliance</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="call" href="tel:+16477056847">647-705-6847</a>
+    <a class="btn btn-primary" href="#book">Free Hygiene Snapshot</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Commercial cleaning &middot; Greater Toronto Area</p>
+      <h1 id="h-hero" style="margin-top:16px">Clean you<em>can measure.</em></h1>
+      <p class="lede">UrbanShield cleans offices, medical and dental clinics, retail stores and industrial facilities across the GTA, and proves it. Every visit is check-in verified. Every month, we test your high-touch surfaces with a hospital-grade hygiene meter and send you the results.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#book">Book a free 20-min Hygiene Snapshot &rarr;</a>
+        <a class="btn btn-ghost" href="#pricing">Estimate my price</a>
+      </div>
+      <div class="hero-facts">
+        <span>No lock-in: 30-day exit</span>
+        <span>2-hr response, 24-hr re-clean</span>
+        <span>Same vetted crew every night</span>
+      </div>
+    </div>
+
+    <div class="meter" aria-labelledby="h-meter">
+      <div class="meter-head">
+        <div>
+          <p class="eyebrow">ATP Hygiene Snapshot</p>
+          <h3 id="h-meter" style="margin-top:6px">5 high-touch points, one office</h3>
+        </div>
+        <div class="toggle" role="group" aria-label="Show readings">
+          <button type="button" id="t-before" aria-pressed="false">Before</button>
+          <button type="button" id="t-after" aria-pressed="true">After UrbanShield</button>
+        </div>
+      </div>
+      <ul class="readings" id="readings"></ul>
+      <div class="meter-foot">
+        <span>Points passing <span class="score" id="passcount">5/5</span></span>
+        <span>Lower RLU = cleaner &middot; line = pass limit</span>
+      </div>
+      <p class="meter-note">Example readings for illustration. Pass limits follow the meter maker's guidance for each surface. Book a Snapshot to see your own numbers.</p>
+    </div>
+  </div>
+</section>
+
+<div class="strip" aria-label="Our promises">
+  <div class="wrap">
+    <ul>
+      <li><span>&#10003;</span>Verified every visit</li>
+      <li><span>&#10003;</span>Tested every month</li>
+      <li><span>&#10003;</span>Fixed within 24 hours</li>
+      <li><span>&#10003;</span>Free to leave in 30 days</li>
+    </ul>
+  </div>
+</div>
+
+<!-- STANDARD -->
+<section id="standard" aria-labelledby="h-std">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The UrbanShield Standard</p>
+      <h2 id="h-std">Most cleaners ask for your trust. We send you proof.</h2>
+      <p class="lede">Six commitments written into every contract. Each one answers a complaint facility managers tell us about their current cleaner.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar"><p class="k">Proof-of-Clean</p><h3>Every visit is logged, not assumed.</h3><p>Our cleaners check in by scanning a QR code at your site, then photograph the key areas before they leave. You get a Monthly Clean Report with every visit, inspection score and issue closed.</p></article>
+      <article class="pillar"><p class="k">Measured hygiene</p><h3>We test surfaces like hospitals do.</h3><p>ATP swabs detect the organic residue germs live on. We test your high-touch points monthly (every two weeks for clinics), plus UV-marker audits, and show you the trend.</p></article>
+      <article class="pillar"><p class="k">Health-grade protocols</p><h3>Founded by a healthcare worker.</h3><p>Colour-coded microfibre, clean-then-disinfect, Health Canada DIN-registered disinfectants with full contact times, and Public Health Ontario (PIDAC) practices in clinical spaces.</p></article>
+      <article class="pillar"><p class="k">2-hour response</p><h3>Fixed by tomorrow, at no charge.</h3><p>Report an issue and we answer within 2 business hours. If anything misses the agreed standard, we re-clean within 24 hours, free.</p></article>
+      <article class="pillar"><p class="k">The same crew</p><h3>Faces you know. A backup we trained.</h3><p>Police-checked, uniformed, photo-ID employees, never cash-paid subcontractors. We pay above minimum wage so good people stay. Every site has a named backup who has already cleaned it.</p></article>
+      <article class="pillar"><p class="k">No lock-in</p><h3>Leave any time with 30 days' notice.</h3><p>No penalty and no auto-renew trap. We keep your business by performing, and your first month comes with a satisfaction guarantee.</p></article>
+    </div>
+
+    <div class="compare-wrap" role="region" aria-label="Comparison table" tabindex="0">
+      <table class="compare">
+        <thead><tr><th scope="col">What you get</th><th scope="col">Typical cleaning contract</th><th scope="col" class="us">UrbanShield</th></tr></thead>
+        <tbody>
+          <tr><td>Proof the visit happened</td><td class="x">Trust, or a sign-in sheet</td><td class="us">QR/GPS check-in + photo checklist, every visit</td></tr>
+          <tr><td>How clean is "clean"?</td><td class="x">How it looks</td><td class="us">ATP hygiene readings, monthly</td></tr>
+          <tr><td>Reporting</td><td class="x">Only when something goes wrong</td><td class="us">Monthly Clean Report with scores</td></tr>
+          <tr><td>Complaints</td><td class="x">"We'll look into it"</td><td class="us">2-hr reply, 24-hr free re-clean</td></tr>
+          <tr><td>Who cleans</td><td class="x">Whoever is available</td><td class="us">Same employee + trained backup</td></tr>
+          <tr><td>Contract</td><td class="x">1-3 years, penalties to exit</td><td class="us">30-day exit, no penalty</td></tr>
+          <tr><td>Clinics</td><td class="x">Treated like an office</td><td class="us">PIDAC-aligned, IPAC-trained staff</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- A NIGHT -->
+<section class="night" aria-labelledby="h-night">
+  <div class="wrap night-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:28px">
+        <p class="eyebrow">What happens after you lock up</p>
+        <h2 id="h-night">One night at your office.</h2>
+      </div>
+      <ol class="timeline">
+        <li><time>18:30</time><div><b>Check-in scan</b><span>Your cleaner scans the site QR code. The visit is time- and location-stamped, and the alarm is disarmed using codes kept in a password vault, never on paper.</span></div></li>
+        <li><time>18:35</time><div><b>Checklist for your site</b><span>Top to bottom, clean to dirty. Colour-coded cloths: red for washrooms, green for kitchens, blue for everything else.</span></div></li>
+        <li><time>20:05</time><div><b>Photo proof</b><span>Washrooms, kitchen and entrance are photographed before leaving. Maintenance issues such as leaks or burnt-out lights are reported to you.</span></div></li>
+        <li><time>20:15</time><div><b>Lock-up and check-out</b><span>Doors checked, alarm armed and confirmed in the app. A missed safety check-in triggers a call within 15 minutes.</span></div></li>
+        <li><time>Monthly</time><div><b>Test and report</b><span>Scored inspection, ATP swabs, and your Monthly Clean Report, by the 5th business day.</span></div></li>
+      </ol>
+    </div>
+
+    <div class="report" aria-label="Sample Monthly Clean Report">
+      <div class="report-head">
+        <div><b>Monthly Clean Report</b><div class="mono" style="font-size:.8rem;color:var(--muted)">Site: Example office, 6,000 sq ft &middot; March</div></div>
+        <span class="sample">Sample</span>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="n mono">22/22</div><div class="l">Visits completed on time</div></div>
+        <div class="kpi"><div class="n mono">94%</div><div class="l">Inspection score (pass 90%)</div></div>
+        <div class="kpi"><div class="n mono">9/10</div><div class="l">ATP points passing</div></div>
+      </div>
+      <table>
+        <thead><tr><th>Issue</th><th>Reported</th><th>Fixed</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Kitchen ATP high</td><td>Mar 11</td><td>Mar 12</td><td class="ok">Re-test pass</td></tr>
+          <tr><td>Paper towel low</td><td>Mar 18</td><td>Mar 18</td><td class="ok">Par raised</td></tr>
+          <tr><td>Leak, 2F washroom</td><td>Mar 24</td><td>Sent to you</td><td class="ok">Logged</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px;font-size:.8rem;color:var(--muted)">A sample report showing the format. Your report shows your own site's data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries" aria-labelledby="h-ind">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Who we clean for</p>
+      <h2 id="h-ind">Built for sites between 1,500 and 25,000 square feet.</h2>
+      <p class="lede">Too small for the national giants to care about, too important for a cleaner with no systems. We contract directly with you and never subcontract your site.</p>
+    </div>
+    <div class="industries">
+      <article class="ind feature">
+        <p class="eyebrow">Medical, dental &amp; allied health</p>
+        <h3 style="font-size:1.6rem">Clinic cleaning by people trained in infection prevention.</h3>
+        <p>Our founder is a certified Personal Support Worker. Clinic crews complete Public Health Ontario IPAC training, and every room follows a clean-to-dirty workflow with a fresh cloth per exam room.</p>
+        <ul>
+          <li>Two-step clean then disinfect, with DIN-registered disinfectants and full contact times</li>
+          <li>ATP testing every two weeks, with results you can show an inspector</li>
+          <li>Sharps containers checked and reported, never handled</li>
+          <li>Signed confidentiality covering patient information</li>
+        </ul>
+        <div class="swatches" aria-label="Colour-coded microfibre system">
+          <span class="sw" style="background:#C8382E">Red &middot; washroom fixtures</span>
+          <span class="sw" style="background:#B07D00">Yellow &middot; clinical</span>
+          <span class="sw" style="background:#2563A8">Blue &middot; general</span>
+          <span class="sw" style="background:#1F8A4C">Green &middot; food areas</span>
+        </div>
+      </article>
+      <article class="ind"><p class="eyebrow">Corporate &amp; professional offices</p><h3>Nightly cleaning that never skips a night.</h3><p>Washrooms, kitchens, high-touch disinfection, floors and glass on a checklist built for your floor plan. Alarm and key protocols are signed off with you.</p></article>
+      <article class="ind"><p class="eyebrow">Industrial &amp; warehouse</p><h3>Washrooms, lunchrooms and offices your shift workers deserve.</h3><p>Site orientation before the first shift, your PPE rules followed, approved floor zones scrubbed, and a WSIB clearance on file.</p></article>
+      <article class="ind"><p class="eyebrow">Retail stores</p><h3>Ready before you open the doors.</h3><p>Early-morning crews for entrance glass, floors, fitting rooms and washrooms, with a "store ready" photo sent to the manager.</p></article>
+      <article class="ind"><p class="eyebrow">Commercial condos &amp; plazas</p><h3>One vendor property managers don't have to chase.</h3><p>Common areas cleaned to a written scope, with reports your board can read and a compliance file ready for your vendor portal.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="night" aria-labelledby="h-svc">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Services</p>
+      <h2 id="h-svc">Everything a commercial space needs, from one accountable team.</h2>
+    </div>
+    <div class="svc">
+      <div>
+        <h3>Recurring</h3>
+        <ul>
+          <li><span>Nightly janitorial</span><span>3-7 nights / week</span></li>
+          <li><span>Medical &amp; dental clinic cleaning</span><span>5-6 nights / week</span></li>
+          <li><span>Early-morning retail cleaning</span><span>before opening</span></li>
+          <li><span>Industrial facility cleaning</span><span>night or between shifts</span></li>
+          <li><span>Day porter</span><span>from 4 hrs / day</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Periodic &amp; project</h3>
+        <ul>
+          <li><span>Floor strip, wax &amp; refinish</span><span>from $0.45 / sq ft</span></li>
+          <li><span>Carpet hot-water extraction</span><span>from $0.28 / sq ft</span></li>
+          <li><span>Post-construction clean</span><span>from $0.40 / sq ft</span></li>
+          <li><span>Electrostatic disinfection</span><span>from $0.15 / sq ft</span></li>
+          <li><span>Interior glass, high dusting, vents</span><span>quoted on site</span></li>
+          <li><span>Emergency call-out (flood, spill)</span><span>4-hr response, core zone</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="exclude">Safety first: we refer biohazard and trauma clean-up, sharps disposal, exterior high-rise windows and work at heights to licensed specialists, and we tell you so up front. Green option standard: certified low-impact products, HEPA vacuums and a written Green Cleaning Program your building can file for BOMA BEST or LEED.</p>
+  </div>
+</section>
+
+<!-- PRICING / ESTIMATOR -->
+<section class="pricing" id="pricing" aria-labelledby="h-price">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Transparent pricing</p>
+      <h2 id="h-price">See a realistic monthly price in 30 seconds.</h2>
+      <p class="lede">Most cleaning companies won't show a number until they've visited. We show the same math we use internally: the hours your site needs, times a published hourly rate. Your exact quote follows a free walkthrough.</p>
+    </div>
+
+    <div class="est">
+      <form id="est" aria-label="Price estimator" onsubmit="return false">
+        <div class="field">
+          <span class="lab" id="lab-sector">Type of space</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lab-sector">
+            <label><input type="radio" name="sector" id="s-office" value="office" checked><span>Office</span></label>
+            <label><input type="radio" name="sector" id="s-medical" value="medical"><span>Medical / dental</span></label>
+            <label><input type="radio" name="sector" id="s-retail" value="retail"><span>Retail</span></label>
+            <label><input type="radio" name="sector" id="s-industrial" value="industrial"><span>Industrial</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="sqft">Cleanable area: <span class="mono" id="sqft-out">6,000</span> sq ft</label>
+          <input type="range" id="sqft" min="1000" max="25000" step="500" value="6000">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="visits">Visits per week</label>
+            <select id="visits"><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option></select>
+          </div>
+          <div class="field">
+            <label for="washrooms">Washrooms</label>
+            <select id="washrooms"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10</option></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="rooms" id="rooms-label">Kitchens / lunchrooms</label>
+          <select id="rooms"><option>0</option><option selected>1</option><option>2</option><option>3</option><option>4</option><option>6</option><option>8</option><option>10</option><option>12</option></select>
+          <small id="rooms-help">For clinics, count exam or treatment rooms.</small>
+        </div>
+      </form>
+      <div class="out" aria-live="polite">
+        <p class="eyebrow" style="color:var(--teal)">Estimated monthly price</p>
+        <div class="price" id="price">$2,150 &ndash; $2,600</div>
+        <p class="muted">Before 13% HST. Includes labour, supervision, chemicals, equipment, ATP testing and your Monthly Clean Report.</p>
+        <dl>
+          <dt>Hours per visit</dt><dd id="o-hrs">2.5</dd>
+          <dt>Visits per month</dt><dd id="o-vis">21.7</dd>
+          <dt>Hourly rate</dt><dd id="o-rate">$40</dd>
+          <dt>Per visit (approx.)</dt><dd id="o-pv">$110</dd>
+        </dl>
+        <a class="btn btn-primary" href="#book" id="est-cta">Get my exact quote &rarr;</a>
+      </div>
+    </div>
+
+    <div class="from" aria-label="Typical monthly ranges">
+      <div><b>Offices</b><span>$850-$4,500/mo</span></div>
+      <div><b>Clinics</b><span>$1,900-$3,500/mo</span></div>
+      <div><b>Retail</b><span>$1,100-$3,700/mo</span></div>
+      <div><b>Industrial</b><span>from $3,850/mo</span></div>
+    </div>
+    <p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Estimates use our 2027 rates (office $40/hr, retail $38/hr, industrial $45/hr, medical $52/hr). Minimum $600/month. Heavy traffic, special floors or extra areas change the hours; the walkthrough confirms them.</p>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust" aria-labelledby="h-trust">
+  <div class="wrap trust-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:28px">
+        <p class="eyebrow">Compliance file, ready on day one</p>
+        <h2 id="h-trust">Pass your vendor checklist before we start.</h2>
+        <p class="lede">Property managers and procurement teams get our full file before signing. No chasing.</p>
+      </div>
+      <ul class="docs">
+        <li><div><b>Incorporated &amp; HST registered</b><span>Ontario corporation; HST number on every invoice so you can claim input tax credits.</span></div></li>
+        <li><div><b>Insurance certificate, naming you</b><span>$2M commercial general liability, including care, custody and control. Your organization can be added as additional insured.</span></div></li>
+        <li><div><b>WSIB clearance &amp; bonded staff</b><span>Every cleaner is a WSIB-covered employee. Janitorial fidelity bond.</span></div></li>
+        <li><div><b>Written safety program</b><span>Ontario OHSA health &amp; safety, violence and harassment policies; H&amp;S Awareness and WHMIS 2015 training; lone-worker check-ins.</span></div></li>
+        <li><div><b>SDS for every product</b><span>On site and in our app. Green-certified products where they work.</span></div></li>
+        <li><div><b>Privacy &amp; accessibility</b><span>Signed confidentiality agreements (including patient information); AODA-trained staff.</span></div></li>
+      </ul>
+    </div>
+    <aside class="founder" aria-label="A note from our founder">
+      <p class="eyebrow" style="color:var(--teal)">Why UrbanShield exists</p>
+      <blockquote>"In healthcare I learned that clean is something you check, not something you assume. I started UrbanShield to bring that discipline to every office, store and warehouse we clean, and to put my name and number on it."</blockquote>
+      <div class="sig"><div class="avatar" aria-hidden="true">E</div><div><b>Ermiyas</b><p>Founder &amp; General Manager &middot; Certified PSW</p></div></div>
+      <p>Your account is run by the owner, not a call centre. Call or text directly.</p>
+      <p class="mono" style="color:var(--on-navy)">647-705-6847</p>
+    </aside>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section class="night" aria-labelledby="h-area" style="padding-block:clamp(48px,7vw,80px)">
+  <div class="wrap">
+    <p class="eyebrow">Service area</p>
+    <h2 id="h-area" style="margin-top:12px;font-size:clamp(1.7rem,3.4vw,2.4rem)">Based in North York. Within 30 minutes of your door.</h2>
+    <div class="areas">
+      <span>North York</span><span>Don Mills &amp; Consumers Rd</span><span>Scarborough</span><span>East York</span><span>Midtown Toronto</span><span>Markham</span><span>Richmond Hill</span><span>Vaughan &amp; Concord</span>
+      <span class="soon">Mississauga (on request)</span><span class="soon">Brampton (on request)</span><span class="soon">Pickering / Ajax (on request)</span>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book" aria-labelledby="h-book">
+  <div class="wrap book-grid">
+    <div>
+      <p class="eyebrow" style="color:var(--teal)">Free, no obligation</p>
+      <h2 id="h-book" style="margin-top:12px">See how clean your space <em>really</em> is.</h2>
+      <p class="lede" style="margin-top:18px">Book a free 20-minute Hygiene Snapshot. We swab five high-touch points and leave you a one-page result. It's useful even if you keep your current cleaner.</p>
+      <ol class="steps">
+        <li><div><b>Tell us about your space</b>. Takes one minute.</div></li>
+        <li><div><b>We visit within 3 business days</b>, at a time that suits you, including early or after hours.</div></li>
+        <li><div><b>You get your readings on the spot</b>, plus a fixed monthly quote within 48 hours if you want one.</div></li>
+      </ol>
+      <div class="contact-lines">
+        <div><span>Call / text</span> <a href="tel:+16477056847">+1 (647) 705-6847</a> <button class="copy" type="button" data-copy="+1 (647) 705-6847">Copy</button></div>
+        <div><span>Email</span> <a href="mailto:ermiyas@perseavitalis.ca">ermiyas@perseavitalis.ca</a> <button class="copy" type="button" data-copy="ermiyas@perseavitalis.ca">Copy</button></div>
+      </div>
+    </div>
+
+    <form class="lead" id="lead" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+      <div class="row2">
+        <div class="field"><label for="f-name">Your name *</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-company">Business / site *</label><input id="f-company" name="company" autocomplete="organization" required></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-email">Work email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-type">Type of space</label>
+          <select id="f-type" name="space_type"><option>Office</option><option>Medical / dental clinic</option><option>Retail store</option><option>Industrial / warehouse</option><option>Commercial condo / plaza</option><option>Other</option></select></div>
+        <div class="field"><label for="f-size">Approx. size (sq ft)</label><input id="f-size" name="size_sqft" inputmode="numeric" placeholder="e.g. 6,000"></div>
+      </div>
+      <div class="field"><label for="f-area">Area / intersection</label><input id="f-area" name="area" placeholder="e.g. Don Mills &amp; Eglinton"></div>
+      <div class="field"><label for="f-want">I'd like</label>
+        <select id="f-want" name="request"><option>A free Hygiene Snapshot</option><option>A walkthrough and quote</option><option>Both</option><option>A specialty service (floors, carpet, post-construction)</option></select></div>
+      <div class="field"><label for="f-msg">Anything we should know?</label><textarea id="f-msg" name="message" placeholder="Current cleaner issues, hours of access, start date..."></textarea></div>
+      <input type="hidden" name="estimate" id="f-est">
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="check" for="f-consent"><input id="f-consent" type="checkbox" name="email_updates" value="yes"><span>Yes, UrbanShield may email me occasional cleaning tips and offers. I can unsubscribe at any time. (Optional. We'll reply to this request either way.)</span></label>
+      <button class="btn btn-primary" type="submit" id="f-submit">Book my free Snapshot &rarr;</button>
+      <div id="f-msgbox" role="status" aria-live="polite"></div>
+      <p style="font-size:.78rem;color:var(--muted)">We use your details only to respond to this request. See our <a href="privacy.html">privacy notice</a>.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Questions</p><h2 id="h-faq">What facility managers ask us.</h2></div>
+    <div class="faq">
+      <details><summary>What is an ATP test, and is it reliable?</summary><p>ATP (adenosine triphosphate) is found in all organic matter: food residue, body fluids, bacteria. A swab and a handheld meter give a reading in seconds, in Relative Light Units (RLU). Hospitals and food plants use it to verify cleaning. It doesn't identify specific germs. It shows whether a surface is truly clean, which is what you're paying for.</p></details>
+      <details><summary>Do I have to sign a long contract?</summary><p>No. Our agreement runs for 12 months, but either side can end it with 30 days' written notice and no penalty. Your first month includes a satisfaction guarantee.</p></details>
+      <details><summary>Who will actually clean my site?</summary><p>An UrbanShield employee, police-checked, trained, uniformed and covered by WSIB, plus a named backup who has already cleaned your site. We don't subcontract routine cleaning, and we don't use cash-paid labour.</p></details>
+      <details><summary>How do you handle keys and alarm codes?</summary><p>Keys carry a code tag only, never your name or address, and are signed in and out. Alarm codes are stored in an encrypted password vault, never written down. Arming is confirmed in our app every night.</p></details>
+      <details><summary>What if something isn't cleaned properly?</summary><p>Tell us by phone, text or email. We reply within 2 business hours and re-clean within 24 hours at no charge, then confirm with a photo or a re-test.</p></details>
+      <details><summary>Are your prices fixed?</summary><p>Yes, one monthly fee based on your site's hours, invoiced on the 1st. Prices adjust once a year on your anniversary (the greater of Ontario CPI or 3%), plus any government-mandated wage changes, always with written notice.</p></details>
+      <details><summary>Can you work around our hours?</summary><p>Yes. Night cleaning from 6 pm, early-morning retail crews from 5 am, weekend floor work, and day porters during business hours.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:14px;display:inline-flex">
+          <svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px"><path d="M32 4 8 12v18c0 15 10 26 24 30 14-4 24-15 24-30V12L32 4z" fill="#14B8A6"/><path d="M32 9 13 15.5V30c0 12 8 21 19 24.6C43 51 51 42 51 30V15.5L32 9z" fill="#0B2545"/><path d="M23 22v11a9 9 0 0 0 18 0V22" fill="none" stroke="#14B8A6" stroke-width="5.5" stroke-linecap="round"/></svg>
+          <b>URBANSHIELD</b><span>JANITORIAL</span>
+        </a>
+        <p>Commercial &middot; Medical &middot; Industrial cleaning for the Greater Toronto Area. Verified every visit, tested every month.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li class="mono">+1 (647) 705-6847</li><li>ermiyas@perseavitalis.ca</li><li>North York, Ontario</li></ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="#standard">The UrbanShield Standard</a></li><li><a href="#industries">Industries</a></li><li><a href="#pricing">Price estimator</a></li><li><a href="#book">Free Hygiene Snapshot</a></li><li><a href="privacy.html">Privacy notice</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>UrbanShield Janitorial is a Persea Vitalis company &middot; Persea Vitalis Inc. o/a UrbanShield Janitorial</span>
+      <span>&copy; <span id="yr">2026</span></span>
+    </div>
+  </div>
+</footer>
+
+<nav class="mobile-cta" aria-label="Quick contact">
+  <a href="tel:+16477056847">Call</a>
+  <a href="sms:+16477056847">Text</a>
+  <a class="go" href="#book">Free Snapshot</a>
+</nav>
+
+<script>
+(function () {
+  // ---- Hero meter (example readings) ----
+  var points = [
+    { name: "Entrance door handle", before: 640, after: 48, limit: 150 },
+    { name: "Washroom faucet", before: 410, after: 72, limit: 150 },
+    { name: "Kitchen counter", before: 880, after: 118, limit: 150 },
+    { name: "Reception desk", before: 290, after: 41, limit: 150 },
+    { name: "Meeting-room table", before: 360, after: 63, limit: 150 }
+  ];
+  var max = 1000;
+  var list = document.getElementById("readings");
+  points.forEach(function (p, i) {
+    var li = document.createElement("li");
+    li.className = "reading";
+    li.innerHTML = '<span class="pt">' + p.name + '</span><span class="val"><span id="v' + i + '"></span><span class="tag" id="g' + i + '"></span></span>' +
+      '<span class="bar" style="--limit:' + (p.limit / max * 100) + '"><i id="b' + i + '"></i></span>';
+    list.appendChild(li);
+  });
+  function show(mode) {
+    var pass = 0;
+    points.forEach(function (p, i) {
+      var v = p[mode], ok = v <= p.limit;
+      if (ok) pass++;
+      document.getElementById("v" + i).textContent = v + " RLU";
+      var g = document.getElementById("g" + i);
+      g.textContent = ok ? "PASS" : "FAIL";
+      g.className = "tag " + (ok ? "pass" : "fail");
+      var b = document.getElementById("b" + i);
+      b.style.width = Math.max(3, Math.min(100, v / max * 100)) + "%";
+      b.style.background = ok ? "var(--pass)" : "var(--fail)";
+    });
+    document.getElementById("passcount").textContent = pass + "/" + points.length;
+    document.getElementById("t-before").setAttribute("aria-pressed", mode === "before");
+    document.getElementById("t-after").setAttribute("aria-pressed", mode === "after");
+  }
+  document.getElementById("t-before").addEventListener("click", function () { show("before"); });
+  document.getElementById("t-after").addEventListener("click", function () { show("after"); });
+  show("after");
+
+  // ---- Estimator (same math as the UrbanShield Pricing Calculator) ----
+  var RATES = { office: 40, medical: 52, retail: 38, industrial: 45 };
+  var PROD = { office: 3000, medical: 2000, retail: 3500, industrial: 2500 };
+  var MIN = 600;
+  var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-CA"); };
+  var r25 = function (n) { return Math.round(n / 25) * 25; };
+  function sector() { var c = document.querySelector('input[name="sector"]:checked'); return c ? c.value : "office"; }
+  function calc() {
+    var s = sector();
+    var sq = +document.getElementById("sqft").value;
+    var v = +document.getElementById("visits").value;
+    var w = +document.getElementById("washrooms").value;
+    var r = +document.getElementById("rooms").value;
+    document.getElementById("sqft-out").textContent = sq.toLocaleString("en-CA");
+    document.getElementById("rooms-label").textContent = s === "medical" ? "Exam / treatment rooms" : "Kitchens / lunchrooms";
+    var hrs = sq / PROD[s] + w * 0.1 + r * 0.05 + 0.25;
+    var vis = v * 4.33;
+    var mid = Math.max(MIN, hrs * vis * RATES[s]);
+    var lo = r25(Math.max(MIN, mid * 0.92)), hi = r25(mid * 1.1);
+    document.getElementById("price").textContent = fmt(lo) + " – " + fmt(hi);
+    document.getElementById("o-hrs").textContent = hrs.toFixed(2);
+    document.getElementById("o-vis").textContent = vis.toFixed(1);
+    document.getElementById("o-rate").textContent = "$" + RATES[s];
+    document.getElementById("o-pv").textContent = fmt(mid / vis);
+    var est = document.getElementById("f-est");
+    if (est) est.value = s + ", " + sq + " sq ft, " + v + "x/wk, " + w + " washrooms, " + r + " rooms: est. " + fmt(lo) + "-" + fmt(hi) + "/mo";
+  }
+  document.getElementById("est").addEventListener("input", calc);
+  document.getElementById("est").addEventListener("change", calc);
+  document.getElementById("est-cta").addEventListener("click", function () {
+    var t = { office: "Office", medical: "Medical / dental clinic", retail: "Retail store", industrial: "Industrial / warehouse" }[sector()];
+    var sel = document.getElementById("f-type"); for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text === t) sel.selectedIndex = i;
+    document.getElementById("f-size").value = (+document.getElementById("sqft").value).toLocaleString("en-CA");
+    document.getElementById("f-want").selectedIndex = 1;
+  });
+  calc();
+
+  // ---- Copy buttons ----
+  document.querySelectorAll(".copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = b.getAttribute("data-copy");
+      var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1600); };
+      try { navigator.clipboard.writeText(t).then(done, function () { b.textContent = t; }); } catch (e) { b.textContent = t; }
+    });
+  });
+
+  // ---- Lead form (Formspree) ----
+  var form = document.getElementById("lead");
+  var box = document.getElementById("f-msgbox");
+  function msg(kind, html) { box.className = "form-msg " + kind; box.innerHTML = html; }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var need = ["f-name", "f-company", "f-email"], bad = null;
+    need.forEach(function (id) { var el = document.getElementById(id); var ok = el.value.trim() && (id !== "f-email" || /\S+@\S+\.\S+/.test(el.value)); el.setAttribute("aria-invalid", ok ? "false" : "true"); if (!ok && !bad) bad = el; });
+    if (bad) { msg("err", "Please add your name, business and a valid work email so we can reply."); bad.focus(); return; }
+    var action = form.getAttribute("action");
+    var fallback = 'Please email <b>ermiyas@perseavitalis.ca</b> or call/text <b>+1 (647) 705-6847</b> and we\'ll book your Snapshot.';
+    if (action.indexOf("YOUR_FORM_ID") !== -1) { msg("err", "Online booking is being connected. " + fallback); return; }
+    var btn = document.getElementById("f-submit"); btn.disabled = true; btn.textContent = "Sending...";
+    fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (r) { if (!r.ok) throw new Error(); form.reset(); msg("ok", "<b>Thank you.</b> We received your request and will reply within one business day."); })
+      .catch(function () { msg("err", "We couldn't send the form from this page. " + fallback); })
+      .then(function () { btn.disabled = false; btn.textContent = "Book my free Snapshot →"; });
+  });
+
+  var y = document.getElementById("yr"); if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
