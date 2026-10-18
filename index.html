@@ -681,6 +681,7 @@ footer a { color: var(--on-navy-muted); }
         <select id="f-want" name="request"><option>A free Hygiene Snapshot</option><option>A walkthrough and quote</option><option>Both</option><option>A specialty service (floors, carpet, post-construction)</option></select></div>
       <div class="field"><label for="f-msg">Anything we should know?</label><textarea id="f-msg" name="message" placeholder="Current cleaner issues, hours of access, start date..."></textarea></div>
       <input type="hidden" name="estimate" id="f-est">
+      <input type="hidden" name="_subject" id="f-subject" value="New UrbanShield booking request">
       <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="check" for="f-consent"><input id="f-consent" type="checkbox" name="email_updates" value="yes"><span>Yes, UrbanShield may email me occasional cleaning tips and offers. I can unsubscribe at any time. (Optional. We'll reply to this request either way.)</span></label>
       <button class="btn btn-primary" type="submit" id="f-submit">Book my free Snapshot &rarr;</button>
@@ -837,6 +838,8 @@ footer a { color: var(--on-navy-muted); }
     var action = form.getAttribute("action");
     var fallback = 'Please email <b>ermiyas@perseavitalis.ca</b> or call/text <b>+1 (647) 705-6847</b> and we\'ll book your Snapshot.';
     if (action.indexOf("YOUR_FORM_ID") !== -1) { msg("err", "Online booking is being connected. " + fallback); return; }
+    var co = document.getElementById("f-company").value.trim();
+    document.getElementById("f-subject").value = "New UrbanShield booking request \u2013 " + co + " (" + document.getElementById("f-want").value + ")";
     var btn = document.getElementById("f-submit"); btn.disabled = true; btn.textContent = "Sending...";
     fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
       .then(function (r) { if (!r.ok) throw new Error(); form.reset(); msg("ok", "<b>Thank you.</b> We received your request and will reply within one business day."); })
