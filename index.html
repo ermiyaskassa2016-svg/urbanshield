@@ -265,6 +265,20 @@ input[type="range"] { padding: 0; accent-color: var(--teal); background: transpa
 @media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; } }
 
 /* areas */
+.area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: end; }
+@media (max-width: 860px) { .area-grid { grid-template-columns: 1fr; } }
+.zc { margin-top: 22px; display: grid; gap: 8px; max-width: 460px; }
+.zc label { font-weight: 600; font-size: .92rem; }
+.zc-row { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; align-items: center; }
+.zc-row input { font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+#fsa-out { font-size: .92rem; color: var(--muted); }
+#fsa-out.core { color: var(--pass); font-weight: 600; }
+#fsa-out.ext { color: var(--teal-ink); font-weight: 600; }
+.zones { display: grid; gap: 12px; }
+.zone { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; }
+.zone.ext { border-left-style: dashed; }
+.zone span { font-size: .95rem; }
+.zone small { font-family: var(--mono); font-size: .76rem; color: var(--muted); }
 .areas { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 .areas span { border: 1px solid var(--line); background: var(--surface); padding: 7px 14px; border-radius: 99px; font-size: .92rem; }
 .areas span.soon { border-style: dashed; color: var(--muted); }
@@ -492,7 +506,7 @@ footer a { color: var(--on-navy-muted); }
       </article>
       <article class="ind"><p class="eyebrow">Corporate &amp; professional offices</p><h3>Nightly cleaning that never skips a night.</h3><p>Washrooms, kitchens, high-touch disinfection, floors and glass on a checklist built for your floor plan. Alarm and key protocols are signed off with you.</p></article>
       <article class="ind"><p class="eyebrow">Industrial &amp; warehouse</p><h3>Washrooms, lunchrooms and offices your shift workers deserve.</h3><p>Site orientation before the first shift, your PPE rules followed, approved floor zones scrubbed, and a WSIB clearance on file.</p></article>
-      <article class="ind"><p class="eyebrow">Retail stores</p><h3>Ready before you open the doors.</h3><p>Early-morning crews for entrance glass, floors, fitting rooms and washrooms, with a "store ready" photo sent to the manager.</p></article>
+      <article class="ind"><p class="eyebrow">Retail stores &amp; fitness studios</p><h3>Ready before you open the doors.</h3><p>Early-morning crews for entrance glass, floors, fitting and change rooms, equipment touch points and washrooms, with a "ready" photo sent to the manager.</p></article>
       <article class="ind"><p class="eyebrow">Commercial condos &amp; plazas</p><h3>One vendor property managers don't have to chase.</h3><p>Common areas cleaned to a written scope, with reports your board can read and a compliance file ready for your vendor portal.</p></article>
     </div>
   </div>
@@ -554,12 +568,12 @@ footer a { color: var(--on-navy-muted); }
         </div>
         <div class="field">
           <label for="sqft">Cleanable area: <span class="mono" id="sqft-out">6,000</span> sq ft</label>
-          <input type="range" id="sqft" min="1000" max="25000" step="500" value="6000">
+          <input type="range" id="sqft" min="500" max="25000" step="500" value="6000">
         </div>
         <div class="row2">
           <div class="field">
             <label for="visits">Visits per week</label>
-            <select id="visits"><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option></select>
+            <select id="visits"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option></select>
           </div>
           <div class="field">
             <label for="washrooms">Washrooms</label>
@@ -587,12 +601,12 @@ footer a { color: var(--on-navy-muted); }
     </div>
 
     <div class="from" aria-label="Typical monthly ranges">
-      <div><b>Offices</b><span>$850-$4,500/mo</span></div>
-      <div><b>Clinics</b><span>$1,900-$3,500/mo</span></div>
-      <div><b>Retail</b><span>$1,100-$3,700/mo</span></div>
-      <div><b>Industrial</b><span>from $3,850/mo</span></div>
+      <div><b>Offices</b><span>from $299/mo</span></div>
+      <div><b>Clinics</b><span>from $1,000/mo</span></div>
+      <div><b>Retail &amp; studios</b><span>from $299/mo</span></div>
+      <div><b>Industrial</b><span>from $599/mo</span></div>
     </div>
-    <p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Estimates use our 2027 rates (office $40/hr, retail $38/hr, industrial $45/hr, medical $52/hr). Minimum $600/month. Heavy traffic, special floors or extra areas change the hours; the walkthrough confirms them.</p>
+    <p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Estimates use our 2027 rates (office $40/hr, retail $38/hr, industrial $45/hr, medical $52/hr). Small offices start at $299/month for a weekly clean. Every visit is at least 1.5 hours, so nothing gets rushed. Heavy traffic, special floors or extra areas change the hours; the walkthrough confirms them.</p>
   </div>
 </section>
 
@@ -633,13 +647,19 @@ footer a { color: var(--on-navy-muted); }
 </section>
 
 <!-- AREAS -->
-<section class="night" aria-labelledby="h-area" style="padding-block:clamp(48px,7vw,80px)">
-  <div class="wrap">
-    <p class="eyebrow">Service area</p>
-    <h2 id="h-area" style="margin-top:12px;font-size:clamp(1.7rem,3.4vw,2.4rem)">Based in North York. Within 30 minutes of your door.</h2>
-    <div class="areas">
-      <span>North York</span><span>Don Mills &amp; Consumers Rd</span><span>Scarborough</span><span>East York</span><span>Midtown Toronto</span><span>Markham</span><span>Richmond Hill</span><span>Vaughan &amp; Concord</span>
-      <span class="soon">Mississauga (on request)</span><span class="soon">Brampton (on request)</span><span class="soon">Pickering / Ajax (on request)</span>
+<section class="night" id="area" aria-labelledby="h-area" style="padding-block:clamp(48px,7vw,80px)">
+  <div class="wrap area-grid">
+    <div>
+      <p class="eyebrow">Service area</p>
+      <h2 id="h-area" style="margin-top:12px;font-size:clamp(1.7rem,3.4vw,2.4rem)">Based in North York. Is your site in our zone?</h2>
+      <div class="zc">
+        <label for="fsa">First 3 characters of your postal code</label>
+        <div class="zc-row"><input id="fsa" maxlength="3" placeholder="e.g. M2J" autocomplete="off" spellcheck="false"><span id="fsa-out" role="status" aria-live="polite">We'll tell you right away.</span></div>
+      </div>
+    </div>
+    <div class="zones">
+      <div class="zone"><b>Core zone</b><span>North York, Scarborough, East York, Midtown, Markham, Richmond Hill, Vaughan &amp; Concord</span><small>Regular service &middot; same crew &middot; 4-hour emergency call-out</small></div>
+      <div class="zone ext"><b>Extended zone</b><span>Downtown &amp; West Toronto, Etobicoke, Mississauga, Brampton, Pickering, Ajax</span><small>Scheduled service on request</small></div>
     </div>
   </div>
 </section>
@@ -676,7 +696,10 @@ footer a { color: var(--on-navy-muted); }
           <select id="f-type" name="space_type"><option>Office</option><option>Medical / dental clinic</option><option>Retail store</option><option>Industrial / warehouse</option><option>Commercial condo / plaza</option><option>Other</option></select></div>
         <div class="field"><label for="f-size">Approx. size (sq ft)</label><input id="f-size" name="size_sqft" inputmode="numeric" placeholder="e.g. 6,000"></div>
       </div>
-      <div class="field"><label for="f-area">Area / intersection</label><input id="f-area" name="area" placeholder="e.g. Don Mills &amp; Eglinton"></div>
+      <div class="row2">
+        <div class="field"><label for="f-area">Area / postal code</label><input id="f-area" name="area" placeholder="e.g. M2J or Don Mills &amp; Eglinton"></div>
+        <div class="field"><label for="f-loc">Number of locations</label><select id="f-loc" name="locations"><option>1</option><option>2-3</option><option>4-10</option><option>More than 10</option></select></div>
+      </div>
       <div class="field"><label for="f-want">I'd like</label>
         <select id="f-want" name="request"><option>A free Hygiene Snapshot</option><option>A walkthrough and quote</option><option>Both</option><option>A specialty service (floors, carpet, post-construction)</option></select></div>
       <div class="field"><label for="f-msg">Anything we should know?</label><textarea id="f-msg" name="message" placeholder="Current cleaner issues, hours of access, start date..."></textarea></div>
@@ -783,7 +806,7 @@ footer a { color: var(--on-navy-muted); }
   // ---- Estimator (same math as the UrbanShield Pricing Calculator) ----
   var RATES = { office: 40, medical: 52, retail: 38, industrial: 45 };
   var PROD = { office: 3000, medical: 2000, retail: 3500, industrial: 2500 };
-  var MIN = 600;
+  var MIN = 299, MIN_VISIT_HRS = 1.5;
   var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-CA"); };
   var r25 = function (n) { return Math.round(n / 25) * 25; };
   function sector() { var c = document.querySelector('input[name="sector"]:checked'); return c ? c.value : "office"; }
@@ -795,10 +818,10 @@ footer a { color: var(--on-navy-muted); }
     var r = +document.getElementById("rooms").value;
     document.getElementById("sqft-out").textContent = sq.toLocaleString("en-CA");
     document.getElementById("rooms-label").textContent = s === "medical" ? "Exam / treatment rooms" : "Kitchens / lunchrooms";
-    var hrs = sq / PROD[s] + w * 0.1 + r * 0.05 + 0.25;
+    var hrs = Math.max(MIN_VISIT_HRS, sq / PROD[s] + w * 0.1 + r * 0.05 + 0.25);
     var vis = v * 4.33;
     var mid = Math.max(MIN, hrs * vis * RATES[s]);
-    var lo = r25(Math.max(MIN, mid * 0.92)), hi = r25(mid * 1.1);
+    var lo = Math.max(MIN, r25(mid * 0.92)), hi = Math.max(lo, r25(mid * 1.1));
     document.getElementById("price").textContent = fmt(lo) + " – " + fmt(hi);
     document.getElementById("o-hrs").textContent = hrs.toFixed(2);
     document.getElementById("o-vis").textContent = vis.toFixed(1);
@@ -816,6 +839,19 @@ footer a { color: var(--on-navy-muted); }
     document.getElementById("f-want").selectedIndex = 1;
   });
   calc();
+
+  // ---- Postal-code zone check (first 3 characters = FSA) ----
+  var CORE = /^(M[1-4]|L3[PRST]|L6[BCEGA]|L4[BCES]|L4[HJKL])/;
+  var EXT = /^(M[5-9]|L4[TVWXYZ]|L5|L6[PRSTVWXYZ]|L7A|L1[STVWXYZ])/;
+  var fsa = document.getElementById("fsa"), fo = document.getElementById("fsa-out");
+  fsa.addEventListener("input", function () {
+    var v = fsa.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+    if (v.length < 3) { fo.className = ""; fo.textContent = "We'll tell you right away."; return; }
+    if (CORE.test(v)) { fo.className = "core"; fo.textContent = "\u2713 Core zone: regular service and 4-hour emergency call-out."; }
+    else if (EXT.test(v)) { fo.className = "ext"; fo.textContent = "Extended zone: scheduled service on request. Ask us."; }
+    else { fo.className = ""; fo.textContent = "Outside our current area. Contact us and we'll see what we can do."; }
+    var area = document.getElementById("f-area"); if (area && !area.value) area.value = v;
+  });
 
   // ---- Copy buttons ----
   document.querySelectorAll(".copy").forEach(function (b) {
