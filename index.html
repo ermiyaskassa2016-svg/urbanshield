@@ -258,6 +258,10 @@ input[type="range"] { padding: 0; accent-color: var(--teal); background: transpa
 .founder p { color: var(--on-navy-muted); font-size: .95rem; }
 .avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--teal); color: #04201E; display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 1.3rem; }
 .sig { display: flex; gap: 14px; align-items: center; }
+.people { display: grid; gap: 14px; }
+.sig p { font-size: .88rem; }
+.why { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px solid rgba(255,255,255,.14); display: grid; gap: 8px; font-size: .92rem; color: var(--on-navy-muted); }
+.why b { color: var(--on-navy); }
 @media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; } }
 
 /* areas */
@@ -472,7 +476,7 @@ footer a { color: var(--on-navy-muted); }
       <article class="ind feature">
         <p class="eyebrow">Medical, dental &amp; allied health</p>
         <h3 style="font-size:1.6rem">Clinic cleaning by people trained in infection prevention.</h3>
-        <p>Our founder is a certified Personal Support Worker. Clinic crews complete Public Health Ontario IPAC training, and every room follows a clean-to-dirty workflow with a fresh cloth per exam room.</p>
+        <p>Co-founder Meklit is a certified Personal Support Worker. Clinic crews complete Public Health Ontario IPAC training, and every room follows a clean-to-dirty workflow with a fresh cloth per exam room.</p>
         <ul>
           <li>Two-step clean then disinfect, with DIN-registered disinfectants and full contact times</li>
           <li>ATP testing every two weeks, with results you can show an inspector</li>
@@ -610,11 +614,19 @@ footer a { color: var(--on-navy-muted); }
         <li><div><b>Privacy &amp; accessibility</b><span>Signed confidentiality agreements (including patient information); AODA-trained staff.</span></div></li>
       </ul>
     </div>
-    <aside class="founder" aria-label="A note from our founder">
+    <aside class="founder" aria-label="A note from our founders">
       <p class="eyebrow" style="color:var(--teal)">Why UrbanShield exists</p>
-      <blockquote>"In healthcare I learned that clean is something you check, not something you assume. I started UrbanShield to bring that discipline to every office, store and warehouse we clean, and to put my name and number on it."</blockquote>
-      <div class="sig"><div class="avatar" aria-hidden="true">E</div><div><b>Ermiyas</b><p>Founder &amp; General Manager &middot; Certified PSW</p></div></div>
-      <p>Your account is run by the owner, not a call centre. Call or text directly.</p>
+      <blockquote>"We started UrbanShield because clean is something you check, not something you assume. As founders, we put our own names and phone number on every site we clean."</blockquote>
+      <div class="people">
+        <div class="sig"><div class="avatar" aria-hidden="true">M</div><div><b>Meklit</b><p>Co-Founder &middot; Certified Personal Support Worker &middot; Marketing diploma</p></div></div>
+        <div class="sig"><div class="avatar" aria-hidden="true">E</div><div><b>Ermiyas</b><p>Co-Founder &middot; MSc, Green Economy &middot; Graduate Certificate, Business Analytics</p></div></div>
+      </div>
+      <ul class="why">
+        <li><b>Infection prevention</b> from hands-on personal support work shapes our clinic protocols.</li>
+        <li><b>Business analytics</b> is behind our Proof-of-Clean data and Monthly Clean Reports.</li>
+        <li><b>Green economy</b> training informs our Green Cleaning Program for BOMA BEST and LEED buildings.</li>
+      </ul>
+      <p>Your account is run by the founders, not a call centre. Call or text directly.</p>
       <p class="mono" style="color:var(--on-navy)">647-705-6847</p>
     </aside>
   </div>
@@ -650,7 +662,7 @@ footer a { color: var(--on-navy-muted); }
       </div>
     </div>
 
-    <form class="lead" id="lead" action="https://formspree.io/f/mjygzenl" method="POST" novalidate>
+    <form class="lead" id="lead" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
       <div class="row2">
         <div class="field"><label for="f-name">Your name *</label><input id="f-name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="f-company">Business / site *</label><input id="f-company" name="company" autocomplete="organization" required></div>
