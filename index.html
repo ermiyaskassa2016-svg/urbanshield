@@ -18,13 +18,12 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "UrbanShield Janitorial",
-  "legalName": "Persea Vitalis Inc.",
-  "description": "Commercial cleaning and janitorial services for offices, medical and dental clinics, retail stores and industrial facilities in the Greater Toronto Area.",
+  "description": "Commercial and residential cleaning in the Greater Toronto Area: offices, medical and dental clinics, retail, industrial, homes and condos, move-in/move-out, Airbnb turnovers and post-construction.",
   "telephone": "+1-647-705-6847",
-  "email": "ermiyas@perseavitalis.ca",
+  "email": "meklitgebrehiwot1@gmail.com",
   "address": {"@type": "PostalAddress", "addressLocality": "North York", "addressRegion": "ON", "addressCountry": "CA"},
   "areaServed": ["Toronto", "North York", "Scarborough", "East York", "Markham", "Richmond Hill", "Vaughan", "Mississauga", "Brampton"],
-  "parentOrganization": {"@type": "Organization", "name": "Persea Vitalis Inc."}
+  "priceRange": "$$"
 }
 </script>
 <style>
@@ -102,12 +101,12 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .brand svg { width: 34px; height: 34px; flex: none; }
 .brand b { font-family: var(--display); font-weight: 900; font-stretch: 120%; font-size: 1.12rem; letter-spacing: .04em; }
 .brand span { font-family: var(--display); font-weight: 500; font-stretch: 120%; font-size: 1.12rem; letter-spacing: .04em; color: var(--teal); }
-.nav { display: flex; gap: 22px; }
-.nav a { color: var(--on-navy-muted); text-decoration: none; font-size: .95rem; font-weight: 500; }
+.nav { display: flex; gap: 18px; }
+.nav a { color: var(--on-navy-muted); text-decoration: none; font-size: .95rem; font-weight: 500; white-space: nowrap; }
 .nav a:hover { color: var(--on-navy); }
-.top .btn { padding: 10px 16px; font-size: .92rem; }
+.top .btn { padding: 10px 16px; font-size: .92rem; white-space: nowrap; }
 .call { font-family: var(--mono); font-size: .9rem; color: var(--on-navy); text-decoration: none; white-space: nowrap; }
-@media (max-width: 980px) { .nav { display: none; } }
+@media (max-width: 1140px) { .nav { display: none; } }
 @media (max-width: 560px) { .call { display: none; } .top .btn { display: none; } .brand b, .brand span { font-size: 1rem; } }
 
 /* hero */
@@ -246,6 +245,15 @@ input[type="range"] { padding: 0; accent-color: var(--teal); background: transpa
 @media (max-width: 860px) { .est { grid-template-columns: 1fr; } .from { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } }
 
+.addons { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.addons legend { margin-bottom: 8px; font-weight: 600; font-size: .92rem; }
+.addons label { display: flex; gap: 8px; align-items: center; font-size: .9rem; cursor: pointer; }
+.addons input { width: auto; accent-color: var(--teal); }
+.addons b { margin-left: auto; font-family: var(--mono); font-weight: 500; font-size: .82rem; color: var(--teal-ink); }
+.rtable { margin-top: 22px; overflow-x: auto; }
+.rtable td:not(:first-child), .rtable th:not(:first-child) { font-family: var(--mono); text-align: right; white-space: nowrap; }
+@media (max-width: 420px) { .addons { grid-template-columns: 1fr; } }
+
 /* trust */
 .trust-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 5vw, 72px); }
 .docs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--ink); }
@@ -342,14 +350,15 @@ footer a { color: var(--on-navy-muted); }
       <b>URBANSHIELD</b><span>JANITORIAL</span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="#standard">The Standard</a>
+      <a href="#standard">Our Standard</a>
       <a href="#industries">Industries</a>
       <a href="#pricing">Pricing</a>
+      <a href="#homes">Homes</a>
       <a href="#trust">Compliance</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="call" href="tel:+16477056847">647-705-6847</a>
-    <a class="btn btn-primary" href="#book">Free Hygiene Snapshot</a>
+    <a class="btn btn-primary" href="#book">Free Snapshot</a>
   </div>
 </header>
 
@@ -358,9 +367,9 @@ footer a { color: var(--on-navy-muted); }
 <section class="hero" aria-labelledby="h-hero">
   <div class="wrap">
     <div>
-      <p class="eyebrow">Commercial cleaning &middot; Greater Toronto Area</p>
+      <p class="eyebrow">Commercial &amp; residential cleaning &middot; Greater Toronto Area</p>
       <h1 id="h-hero" style="margin-top:16px">Clean you<em>can measure.</em></h1>
-      <p class="lede">UrbanShield cleans offices, medical and dental clinics, retail stores and industrial facilities across the GTA, and proves it. Every visit is check-in verified. Every month, we test your high-touch surfaces with a hospital-grade hygiene meter and send you the results.</p>
+      <p class="lede">UrbanShield cleans offices, clinics, retail and industrial sites, and homes, condos and rentals across the GTA, and proves it. Every visit is check-in verified. Every month, we test your high-touch surfaces with a hospital-grade hygiene meter and send you the results.</p>
       <div class="actions">
         <a class="btn btn-primary" href="#book">Book a free 20-min Hygiene Snapshot &rarr;</a>
         <a class="btn btn-ghost" href="#pricing">Estimate my price</a>
@@ -490,7 +499,7 @@ footer a { color: var(--on-navy-muted); }
       <article class="ind feature">
         <p class="eyebrow">Medical, dental &amp; allied health</p>
         <h3 style="font-size:1.6rem">Clinic cleaning by people trained in infection prevention.</h3>
-        <p>Co-founder Meklit is a certified Personal Support Worker. Clinic crews complete Public Health Ontario IPAC training, and every room follows a clean-to-dirty workflow with a fresh cloth per exam room.</p>
+        <p>Founder Meklit Tassew is a certified Personal Support Worker. Clinic crews complete Public Health Ontario IPAC training, and every room follows a clean-to-dirty workflow with a fresh cloth per exam room.</p>
         <ul>
           <li>Two-step clean then disinfect, with DIN-registered disinfectants and full contact times</li>
           <li>ATP testing every two weeks, with results you can show an inspector</li>
@@ -505,7 +514,7 @@ footer a { color: var(--on-navy-muted); }
         </div>
       </article>
       <article class="ind"><p class="eyebrow">Corporate &amp; professional offices</p><h3>Nightly cleaning that never skips a night.</h3><p>Washrooms, kitchens, high-touch disinfection, floors and glass on a checklist built for your floor plan. Alarm and key protocols are signed off with you.</p></article>
-      <article class="ind"><p class="eyebrow">Industrial &amp; warehouse</p><h3>Washrooms, lunchrooms and offices your shift workers deserve.</h3><p>Site orientation before the first shift, your PPE rules followed, approved floor zones scrubbed, and a WSIB clearance on file.</p></article>
+      <article class="ind"><p class="eyebrow">Industrial &amp; warehouse</p><h3>Washrooms, lunchrooms and offices your shift workers deserve.</h3><p>Site orientation before the first shift, your PPE rules followed, approved floor zones scrubbed, and a WSIB clearance certificate on request.</p></article>
       <article class="ind"><p class="eyebrow">Retail stores &amp; fitness studios</p><h3>Ready before you open the doors.</h3><p>Early-morning crews for entrance glass, floors, fitting and change rooms, equipment touch points and washrooms, with a "ready" photo sent to the manager.</p></article>
       <article class="ind"><p class="eyebrow">Commercial condos &amp; plazas</p><h3>One vendor property managers don't have to chase.</h3><p>Common areas cleaned to a written scope, with reports your board can read and a compliance file ready for your vendor portal.</p></article>
     </div>
@@ -610,6 +619,74 @@ footer a { color: var(--on-navy-muted); }
   </div>
 </section>
 
+<!-- HOMES -->
+<section id="homes" aria-labelledby="h-homes">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Homes, condos &amp; rentals</p>
+      <h2 id="h-homes">Flat home-cleaning prices. No surprises.</h2>
+      <p class="lede">Priced by bedrooms and bathrooms, before 13% HST. We bring all supplies and equipment. Not happy with an area? Tell us within 24 hours and we re-clean it free.</p>
+    </div>
+
+    <div class="est">
+      <form id="hest" aria-label="Home cleaning price" onsubmit="return false">
+        <div class="field">
+          <span class="lab" id="lab-htype">Type of clean</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lab-htype">
+            <label><input type="radio" name="htype" value="standard" checked><span>Standard</span></label>
+            <label><input type="radio" name="htype" value="deep"><span>Deep</span></label>
+            <label><input type="radio" name="htype" value="move"><span>Move-in / move-out</span></label>
+            <label><input type="radio" name="htype" value="turnover"><span>Airbnb turnover</span></label>
+          </div>
+          <small id="h-desc"></small>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="h-bed">Bedrooms</label>
+            <select id="h-bed"><option value="1">Studio / 1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div>
+          <div class="field"><label for="h-bath">Bathrooms</label>
+            <select id="h-bath"><option value="1" selected>1</option><option value="1.5">1.5</option><option value="2">2</option><option value="2.5">2.5</option><option value="3">3</option><option value="3.5">3.5</option><option value="4">4</option></select></div>
+        </div>
+        <div class="field" id="h-freq-wrap"><label for="h-freq">How often?</label>
+          <select id="h-freq"><option value="0">One time</option><option value="0.10">Monthly (10% off)</option><option value="0.15" selected>Every 2 weeks (15% off)</option><option value="0.20">Weekly (20% off)</option></select>
+          <small>Recurring discount starts from the second visit.</small></div>
+        <fieldset class="addons"><legend class="lab">Add-ons</legend>
+          <label><input type="checkbox" value="35" data-n="Inside oven"> Inside oven <b>$35</b></label>
+          <label><input type="checkbox" value="35" data-n="Inside fridge"> Inside fridge <b>$35</b></label>
+          <label><input type="checkbox" value="40" data-n="Inside cabinets"> Inside cabinets <b>$40</b></label>
+          <label><input type="checkbox" value="40" data-n="Interior windows"> Interior windows <b>$40</b></label>
+          <label><input type="checkbox" value="25" data-n="Laundry (per load)"> Laundry, per load <b>$25</b></label>
+          <label><input type="checkbox" value="20" data-n="Pets in home"> Pets in home <b>$20</b></label>
+        </fieldset>
+      </form>
+      <div class="out" aria-live="polite">
+        <p class="eyebrow" style="color:var(--teal)" id="h-label">Price per visit</p>
+        <div class="price" id="h-price">$179</div>
+        <p class="muted" id="h-sub">First visit $179, then $152 every 2 weeks.</p>
+        <dl>
+          <dt>Estimated time</dt><dd id="h-time">3 hrs</dd>
+          <dt>Supplies &amp; equipment</dt><dd>Included</dd>
+          <dt>24-hr re-clean guarantee</dt><dd>Included</dd>
+        </dl>
+        <a class="btn btn-primary" href="#book" id="h-cta">Book this clean &rarr;</a>
+      </div>
+    </div>
+
+    <div class="rtable" role="region" aria-label="Home cleaning price list" tabindex="0">
+      <table class="compare">
+        <thead><tr><th scope="col">Home size</th><th scope="col">Standard</th><th scope="col">Deep</th><th scope="col">Move-in / out</th><th scope="col">Airbnb turnover</th></tr></thead>
+        <tbody>
+          <tr><td>Studio / 1 bed, 1 bath</td><td>$149</td><td>$239</td><td>$269</td><td>$99</td></tr>
+          <tr><td>2 bed, 1 bath</td><td>$179</td><td>$289</td><td>$319</td><td>$124</td></tr>
+          <tr><td>2 bed, 2 bath</td><td>$209</td><td>$329</td><td>$359</td><td>$144</td></tr>
+          <tr><td>3 bed, 2 bath</td><td>$239</td><td>$379</td><td>$409</td><td>$169</td></tr>
+          <tr><td>4 bed, 3 bath</td><td>$299</td><td>$469</td><td>$499</td><td>$214</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Prices before 13% HST, for homes in normal condition. Homes not professionally cleaned in the last 4 weeks start with a Deep clean. Basements, heavy build-up or post-renovation dust are quoted after a quick photo or video call. 48 hours' notice to reschedule or cancel at no charge.</p>
+  </div>
+</section>
+
 <!-- TRUST -->
 <section id="trust" aria-labelledby="h-trust">
   <div class="wrap trust-grid">
@@ -622,25 +699,24 @@ footer a { color: var(--on-navy-muted); }
       <ul class="docs">
         <li><div><b>Incorporated &amp; HST registered</b><span>Ontario corporation; HST number on every invoice so you can claim input tax credits.</span></div></li>
         <li><div><b>Insurance certificate, naming you</b><span>$2M commercial general liability, including care, custody and control. Your organization can be added as additional insured.</span></div></li>
-        <li><div><b>WSIB clearance &amp; bonded staff</b><span>Every cleaner is a WSIB-covered employee. Janitorial fidelity bond.</span></div></li>
+        <li><div><b>Bonded, with WSIB clearance on request</b><span>Janitorial fidelity bond. WSIB clearance certificate supplied for any contract that requires one.</span></div></li>
         <li><div><b>Written safety program</b><span>Ontario OHSA health &amp; safety, violence and harassment policies; H&amp;S Awareness and WHMIS 2015 training; lone-worker check-ins.</span></div></li>
         <li><div><b>SDS for every product</b><span>On site and in our app. Green-certified products where they work.</span></div></li>
         <li><div><b>Privacy &amp; accessibility</b><span>Signed confidentiality agreements (including patient information); AODA-trained staff.</span></div></li>
       </ul>
     </div>
-    <aside class="founder" aria-label="A note from our founders">
+    <aside class="founder" aria-label="A note from our founder">
       <p class="eyebrow" style="color:var(--teal)">Why UrbanShield exists</p>
-      <blockquote>"We started UrbanShield because clean is something you check, not something you assume. As founders, we put our own names and phone number on every site we clean."</blockquote>
+      <blockquote>"I started UrbanShield because clean is something you check, not something you assume. I put my own name and phone number on every space we clean."</blockquote>
       <div class="people">
-        <div class="sig"><div class="avatar" aria-hidden="true">M</div><div><b>Meklit</b><p>Co-Founder &middot; Certified Personal Support Worker &middot; Marketing diploma</p></div></div>
-        <div class="sig"><div class="avatar" aria-hidden="true">E</div><div><b>Ermiyas</b><p>Co-Founder &middot; MSc, Green Economy &middot; Graduate Certificate, Business Analytics</p></div></div>
+        <div class="sig"><div class="avatar" aria-hidden="true">M</div><div><b>Meklit Tassew</b><p>Founder &middot; Certified Personal Support Worker</p></div></div>
       </div>
       <ul class="why">
         <li><b>Infection prevention</b> from hands-on personal support work shapes our clinic protocols.</li>
-        <li><b>Business analytics</b> is behind our Proof-of-Clean data and Monthly Clean Reports.</li>
-        <li><b>Green economy</b> training informs our Green Cleaning Program for BOMA BEST and LEED buildings.</li>
+        <li><b>Owner-run:</b> the person who quotes your job is the person accountable for it.</li>
+        <li><b>Measured, not assumed:</b> photo checklists and ATP testing back every promise.</li>
       </ul>
-      <p>Your account is run by the founders, not a call centre. Call or text directly.</p>
+      <p>Your account is run by the founder, not a call centre. Call or text directly.</p>
       <p class="mono" style="color:var(--on-navy)">647-705-6847</p>
     </aside>
   </div>
@@ -678,30 +754,30 @@ footer a { color: var(--on-navy-muted); }
       </ol>
       <div class="contact-lines">
         <div><span>Call / text</span> <a href="tel:+16477056847">+1 (647) 705-6847</a> <button class="copy" type="button" data-copy="+1 (647) 705-6847">Copy</button></div>
-        <div><span>Email</span> <a href="mailto:ermiyas@perseavitalis.ca">ermiyas@perseavitalis.ca</a> <button class="copy" type="button" data-copy="ermiyas@perseavitalis.ca">Copy</button></div>
+        <div><span>Email</span> <a href="mailto:meklitgebrehiwot1@gmail.com">meklitgebrehiwot1@gmail.com</a> <button class="copy" type="button" data-copy="meklitgebrehiwot1@gmail.com">Copy</button></div>
       </div>
     </div>
 
     <form class="lead" id="lead" action="https://formspree.io/f/mjygzenl" method="POST" novalidate>
       <div class="row2">
         <div class="field"><label for="f-name">Your name *</label><input id="f-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="f-company">Business / site *</label><input id="f-company" name="company" autocomplete="organization" required></div>
+        <div class="field"><label for="f-company">Business name, or "Home" *</label><input id="f-company" name="company" autocomplete="organization" required></div>
       </div>
       <div class="row2">
-        <div class="field"><label for="f-email">Work email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
       </div>
       <div class="row2">
         <div class="field"><label for="f-type">Type of space</label>
-          <select id="f-type" name="space_type"><option>Office</option><option>Medical / dental clinic</option><option>Retail store</option><option>Industrial / warehouse</option><option>Commercial condo / plaza</option><option>Other</option></select></div>
-        <div class="field"><label for="f-size">Approx. size (sq ft)</label><input id="f-size" name="size_sqft" inputmode="numeric" placeholder="e.g. 6,000"></div>
+          <select id="f-type" name="space_type"><option>Office</option><option>Medical / dental clinic</option><option>Retail store</option><option>Industrial / warehouse</option><option>Commercial condo / plaza</option><option>Home / condo</option><option>Move-in / move-out</option><option>Airbnb / short-term rental</option><option>Post-construction</option><option>Other</option></select></div>
+        <div class="field"><label for="f-size">Approx. size (sq ft or bedrooms)</label><input id="f-size" name="size_sqft" inputmode="numeric" placeholder="e.g. 6,000"></div>
       </div>
       <div class="row2">
         <div class="field"><label for="f-area">Area / postal code</label><input id="f-area" name="area" placeholder="e.g. M2J or Don Mills &amp; Eglinton"></div>
         <div class="field"><label for="f-loc">Number of locations</label><select id="f-loc" name="locations"><option>1</option><option>2-3</option><option>4-10</option><option>More than 10</option></select></div>
       </div>
       <div class="field"><label for="f-want">I'd like</label>
-        <select id="f-want" name="request"><option>A free Hygiene Snapshot</option><option>A walkthrough and quote</option><option>Both</option><option>A specialty service (floors, carpet, post-construction)</option></select></div>
+        <select id="f-want" name="request"><option>A free Hygiene Snapshot</option><option>A walkthrough and quote</option><option>Both</option><option>A home cleaning booking</option><option>A specialty service (floors, carpet, post-construction)</option></select></div>
       <div class="field"><label for="f-msg">Anything we should know?</label><textarea id="f-msg" name="message" placeholder="Current cleaner issues, hours of access, start date..."></textarea></div>
       <input type="hidden" name="estimate" id="f-est">
       <input type="hidden" name="_subject" id="f-subject" value="New UrbanShield booking request">
@@ -721,7 +797,7 @@ footer a { color: var(--on-navy-muted); }
     <div class="faq">
       <details><summary>What is an ATP test, and is it reliable?</summary><p>ATP (adenosine triphosphate) is found in all organic matter: food residue, body fluids, bacteria. A swab and a handheld meter give a reading in seconds, in Relative Light Units (RLU). Hospitals and food plants use it to verify cleaning. It doesn't identify specific germs. It shows whether a surface is truly clean, which is what you're paying for.</p></details>
       <details><summary>Do I have to sign a long contract?</summary><p>No. Our agreement runs for 12 months, but either side can end it with 30 days' written notice and no penalty. Your first month includes a satisfaction guarantee.</p></details>
-      <details><summary>Who will actually clean my site?</summary><p>An UrbanShield employee, police-checked, trained, uniformed and covered by WSIB, plus a named backup who has already cleaned your site. We don't subcontract routine cleaning, and we don't use cash-paid labour.</p></details>
+      <details><summary>Who will actually clean my site?</summary><p>An UrbanShield employee, police-checked, trained and uniformed, plus a named backup who has already cleaned your site. We don't subcontract routine cleaning, and we don't use cash-paid labour.</p></details>
       <details><summary>How do you handle keys and alarm codes?</summary><p>Keys carry a code tag only, never your name or address, and are signed in and out. Alarm codes are stored in an encrypted password vault, never written down. Arming is confirmed in our app every night.</p></details>
       <details><summary>What if something isn't cleaned properly?</summary><p>Tell us by phone, text or email. We reply within 2 business hours and re-clean within 24 hours at no charge, then confirm with a photo or a re-test.</p></details>
       <details><summary>Are your prices fixed?</summary><p>Yes, one monthly fee based on your site's hours, invoiced on the 1st. Prices adjust once a year on your anniversary (the greater of Ontario CPI or 3%), plus any government-mandated wage changes, always with written notice.</p></details>
@@ -739,19 +815,19 @@ footer a { color: var(--on-navy-muted); }
           <svg viewBox="0 0 64 64" aria-hidden="true" style="width:30px;height:30px"><path d="M32 4 8 12v18c0 15 10 26 24 30 14-4 24-15 24-30V12L32 4z" fill="#14B8A6"/><path d="M32 9 13 15.5V30c0 12 8 21 19 24.6C43 51 51 42 51 30V15.5L32 9z" fill="#0B2545"/><path d="M23 22v11a9 9 0 0 0 18 0V22" fill="none" stroke="#14B8A6" stroke-width="5.5" stroke-linecap="round"/></svg>
           <b>URBANSHIELD</b><span>JANITORIAL</span>
         </a>
-        <p>Commercial &middot; Medical &middot; Industrial cleaning for the Greater Toronto Area. Verified every visit, tested every month.</p>
+        <p>Commercial, medical, industrial and residential cleaning for the Greater Toronto Area. Clean you can measure.</p>
       </div>
       <div>
         <h4>Contact</h4>
-        <ul><li class="mono">+1 (647) 705-6847</li><li>ermiyas@perseavitalis.ca</li><li>North York, Ontario</li></ul>
+        <ul><li class="mono">+1 (647) 705-6847</li><li>meklitgebrehiwot1@gmail.com</li><li>North York, Ontario</li></ul>
       </div>
       <div>
         <h4>Explore</h4>
-        <ul><li><a href="#standard">The UrbanShield Standard</a></li><li><a href="#industries">Industries</a></li><li><a href="#pricing">Price estimator</a></li><li><a href="#book">Free Hygiene Snapshot</a></li><li><a href="privacy.html">Privacy notice</a></li></ul>
+        <ul><li><a href="#standard">The UrbanShield Standard</a></li><li><a href="#industries">Industries</a></li><li><a href="#pricing">Business pricing</a></li><li><a href="#homes">Home cleaning prices</a></li><li><a href="#book">Free Hygiene Snapshot</a></li><li><a href="privacy.html">Privacy notice</a></li></ul>
       </div>
     </div>
     <div class="legal">
-      <span>UrbanShield Janitorial is a Persea Vitalis company &middot; Persea Vitalis Inc. o/a UrbanShield Janitorial</span>
+      <span>UrbanShield Janitorial &middot; North York, Ontario</span>
       <span>&copy; <span id="yr">2026</span></span>
     </div>
   </div>
@@ -840,6 +916,50 @@ footer a { color: var(--on-navy-muted); }
   });
   calc();
 
+  // ---- Home cleaning price (flat rates by bedrooms + bathrooms) ----
+  var HP = {
+    standard: { base: 149, bed: 30, bath: 30, half: 15, hrs: 2.5, hb: 0.5, d: "Kitchen, bathrooms, dusting, floors and tidy, top to bottom." },
+    deep: { base: 239, bed: 50, bath: 40, half: 20, hrs: 4, hb: 0.75, d: "Standard plus baseboards, doors and frames, light switches, vents, behind and under reachable furniture, and build-up removal." },
+    move: { base: 269, bed: 50, bath: 40, half: 20, hrs: 4.5, hb: 0.75, d: "Deep clean of an empty home, including inside cabinets, closets and drawers. Oven and fridge are add-ons." },
+    turnover: { base: 99, bed: 25, bath: 20, half: 10, hrs: 1.5, hb: 0.4, d: "Guest-ready reset: beds made with your linens, bathrooms and kitchen cleaned, restock check, damage photos." }
+  };
+  var hfmt = function (n) { return "$" + Math.round(n); };
+  function htype() { var c = document.querySelector('input[name="htype"]:checked'); return c ? c.value : "standard"; }
+  function hcalc() {
+    var t = htype(), P = HP[t];
+    var bed = +document.getElementById("h-bed").value, ba = +document.getElementById("h-bath").value;
+    var full = Math.floor(ba), half = ba - full > 0 ? 1 : 0;
+    var add = 0, names = [];
+    document.querySelectorAll(".addons input:checked").forEach(function (c) { add += +c.value; names.push(c.dataset.n); });
+    var base = P.base + P.bed * (bed - 1) + P.bath * (full - 1) + P.half * half;
+    var first = base + add;
+    var recurring = t === "standard" || t === "turnover";
+    document.getElementById("h-freq-wrap").style.display = t === "standard" ? "" : "none";
+    var disc = t === "standard" ? +document.getElementById("h-freq").value : 0;
+    var hrs = P.hrs + P.hb * (bed - 1) + P.hb * (full - 1 + half * 0.5);
+    document.getElementById("h-desc").textContent = P.d;
+    document.getElementById("h-price").textContent = hfmt(first);
+    document.getElementById("h-label").textContent = t === "turnover" ? "Price per turnover" : "Price per visit";
+    var sub = "One-time price, before HST.";
+    if (disc > 0) { var fq = document.getElementById("h-freq"); sub = "First visit " + hfmt(first) + ", then " + hfmt(base * (1 - disc) + add) + " " + fq.options[fq.selectedIndex].text.replace(/ \(.*\)/, "").toLowerCase() + "."; }
+    if (t === "turnover") sub = "Per turnover, before HST. Same-day turnovers between guests.";
+    document.getElementById("h-sub").textContent = sub;
+    document.getElementById("h-time").textContent = (Math.round(hrs * 2) / 2) + " hrs";
+    var est = document.getElementById("f-est");
+    var lbl = { standard: "Standard", deep: "Deep", move: "Move-in/out", turnover: "Airbnb turnover" }[t];
+    window.__homeEst = "HOME: " + lbl + ", " + bed + " bed / " + ba + " bath" + (names.length ? ", add-ons: " + names.join(", ") : "") + (disc > 0 ? ", recurring " + Math.round(disc * 100) + "% off" : "") + ": " + hfmt(first) + " + HST";
+  }
+  document.getElementById("hest").addEventListener("input", hcalc);
+  document.getElementById("hest").addEventListener("change", hcalc);
+  document.getElementById("h-cta").addEventListener("click", function () {
+    var t = { standard: "Home / condo", deep: "Home / condo", move: "Move-in / move-out", turnover: "Airbnb / short-term rental" }[htype()];
+    var sel = document.getElementById("f-type"); for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text === t) sel.selectedIndex = i;
+    document.getElementById("f-want").value = "A home cleaning booking";
+    document.getElementById("f-est").value = window.__homeEst || "";
+    document.getElementById("f-company").value = document.getElementById("f-company").value || "Home";
+  });
+  hcalc();
+
   // ---- Postal-code zone check (first 3 characters = FSA) ----
   var CORE = /^(M[1-4]|L3[PRST]|L6[BCEGA]|L4[BCES]|L4[HJKL])/;
   var EXT = /^(M[5-9]|L4[TVWXYZ]|L5|L6[PRSTVWXYZ]|L7A|L1[STVWXYZ])/;
@@ -872,7 +992,7 @@ footer a { color: var(--on-navy-muted); }
     need.forEach(function (id) { var el = document.getElementById(id); var ok = el.value.trim() && (id !== "f-email" || /\S+@\S+\.\S+/.test(el.value)); el.setAttribute("aria-invalid", ok ? "false" : "true"); if (!ok && !bad) bad = el; });
     if (bad) { msg("err", "Please add your name, business and a valid work email so we can reply."); bad.focus(); return; }
     var action = form.getAttribute("action");
-    var fallback = 'Please email <b>ermiyas@perseavitalis.ca</b> or call/text <b>+1 (647) 705-6847</b> and we\'ll book your Snapshot.';
+    var fallback = 'Please email <b>meklitgebrehiwot1@gmail.com</b> or call/text <b>+1 (647) 705-6847</b> and we\'ll book your Snapshot.';
     if (action.indexOf("YOUR_FORM_ID") !== -1) { msg("err", "Online booking is being connected. " + fallback); return; }
     var co = document.getElementById("f-company").value.trim();
     document.getElementById("f-subject").value = "New UrbanShield booking request \u2013 " + co + " (" + document.getElementById("f-want").value + ")";
