@@ -245,6 +245,11 @@ input[type="range"] { padding: 0; accent-color: var(--teal); background: transpa
 @media (max-width: 860px) { .est { grid-template-columns: 1fr; } .from { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } }
 
+.ptabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 99px; margin-bottom: 18px; }
+.ptabs button { font: inherit; font-weight: 600; font-size: .95rem; border: 0; background: transparent; color: var(--ink); padding: 10px 18px; border-radius: 99px; cursor: pointer; }
+.ptabs button[aria-selected="true"] { background: var(--ink); color: var(--surface); }
+.ptabs button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.pane-lede { color: var(--muted); margin: 0 0 18px; max-width: 70ch; }
 .addons { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
 .addons legend { margin-bottom: 8px; font-weight: 600; font-size: .92rem; }
 .addons label { display: flex; gap: 8px; align-items: center; font-size: .9rem; cursor: pointer; }
@@ -560,9 +565,15 @@ footer a { color: var(--on-navy-muted); }
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Transparent pricing</p>
-      <h2 id="h-price">See a realistic monthly price in 30 seconds.</h2>
-      <p class="lede">Most cleaning companies won't show a number until they've visited. We show the same math we use internally: the hours your site needs, times a published hourly rate. Your exact quote follows a free walkthrough.</p>
+      <h2 id="h-price">See your price in 30 seconds.</h2>
+      <p class="lede">Most cleaners won't show a number until they've visited. We publish ours, before 13% HST.</p>
     </div>
+    <div class="ptabs" role="tablist" aria-label="Pricing type">
+      <button type="button" role="tab" id="tab-biz" aria-controls="pane-biz" aria-selected="true">Business &middot; monthly</button>
+      <button type="button" role="tab" id="tab-home" aria-controls="homes" aria-selected="false">Home &middot; per visit</button>
+    </div>
+    <div id="pane-biz" role="tabpanel" aria-labelledby="tab-biz">
+    <p class="pane-lede">Offices, clinics, retail and industrial: the hours your site needs, times a published hourly rate. Your exact quote follows a free walkthrough.</p>
 
     <div class="est">
       <form id="est" aria-label="Price estimator" onsubmit="return false">
@@ -616,18 +627,9 @@ footer a { color: var(--on-navy-muted); }
       <div><b>Industrial</b><span>from $599/mo</span></div>
     </div>
     <p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Estimates use our 2027 rates (office $40/hr, retail $38/hr, industrial $45/hr, medical $52/hr). Small offices start at $299/month for a weekly clean. Every visit is at least 1.5 hours, so nothing gets rushed. Heavy traffic, special floors or extra areas change the hours; the walkthrough confirms them.</p>
-  </div>
-</section>
-
-<!-- HOMES -->
-<section id="homes" aria-labelledby="h-homes">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">Homes, condos &amp; rentals</p>
-      <h2 id="h-homes">Flat home-cleaning prices. No surprises.</h2>
-      <p class="lede">Priced by bedrooms and bathrooms, before 13% HST. We bring all supplies and equipment. Not happy with an area? Tell us within 24 hours and we re-clean it free.</p>
     </div>
-
+    <div id="homes" role="tabpanel" aria-labelledby="tab-home" hidden>
+    <p class="pane-lede">Homes, condos and rentals: flat prices by bedrooms and bathrooms. We bring all supplies and equipment, and re-clean any missed area free if you tell us within 24 hours.</p>
     <div class="est">
       <form id="hest" aria-label="Home cleaning price" onsubmit="return false">
         <div class="field">
@@ -660,7 +662,7 @@ footer a { color: var(--on-navy-muted); }
       </form>
       <div class="out" aria-live="polite">
         <p class="eyebrow" style="color:var(--teal)" id="h-label">Price per visit</p>
-        <div class="price" id="h-price">$179</div>
+        <div class="price" id="h-hprice">$179</div>
         <p class="muted" id="h-sub">First visit $179, then $152 every 2 weeks.</p>
         <dl>
           <dt>Estimated time</dt><dd id="h-time">3 hrs</dd>
@@ -684,6 +686,7 @@ footer a { color: var(--on-navy-muted); }
       </table>
     </div>
     <p style="margin-top:14px;font-size:.85rem;color:var(--muted)">Prices before 13% HST, for homes in normal condition. Homes not professionally cleaned in the last 4 weeks start with a Deep clean. Basements, heavy build-up or post-renovation dust are quoted after a quick photo or video call. 48 hours' notice to reschedule or cancel at no charge.</p>
+    </div>
   </div>
 </section>
 
@@ -916,6 +919,18 @@ footer a { color: var(--on-navy-muted); }
   });
   calc();
 
+  // ---- Pricing tabs (Business / Home); #homes link opens Home ----
+  var tb = document.getElementById("tab-biz"), th = document.getElementById("tab-home");
+  function ptab(home) {
+    tb.setAttribute("aria-selected", !home); th.setAttribute("aria-selected", home);
+    document.getElementById("pane-biz").hidden = home; document.getElementById("homes").hidden = !home;
+  }
+  tb.addEventListener("click", function () { ptab(false); });
+  th.addEventListener("click", function () { ptab(true); });
+  function hashTab() { if (location.hash === "#homes") { ptab(true); document.getElementById("pricing").scrollIntoView(); } }
+  window.addEventListener("hashchange", hashTab); hashTab();
+  document.querySelectorAll('a[href="#homes"]').forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); ptab(true); document.getElementById("pricing").scrollIntoView({ behavior: "smooth" }); }); });
+
   // ---- Home cleaning price (flat rates by bedrooms + bathrooms) ----
   var HP = {
     standard: { base: 149, bed: 30, bath: 30, half: 15, hrs: 2.5, hb: 0.5, d: "Kitchen, bathrooms, dusting, floors and tidy, top to bottom." },
@@ -938,7 +953,7 @@ footer a { color: var(--on-navy-muted); }
     var disc = t === "standard" ? +document.getElementById("h-freq").value : 0;
     var hrs = P.hrs + P.hb * (bed - 1) + P.hb * (full - 1 + half * 0.5);
     document.getElementById("h-desc").textContent = P.d;
-    document.getElementById("h-price").textContent = hfmt(first);
+    document.getElementById("h-hprice").textContent = hfmt(first);
     document.getElementById("h-label").textContent = t === "turnover" ? "Price per turnover" : "Price per visit";
     var sub = "One-time price, before HST.";
     if (disc > 0) { var fq = document.getElementById("h-freq"); sub = "First visit " + hfmt(first) + ", then " + hfmt(base * (1 - disc) + add) + " " + fq.options[fq.selectedIndex].text.replace(/ \(.*\)/, "").toLowerCase() + "."; }
